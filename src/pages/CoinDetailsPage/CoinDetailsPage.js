@@ -1,35 +1,44 @@
 // Dependencies
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 // Components
 import Loading from "../../components/Loading/Loading";
 import CoinDetails from "../../components/CoinDetails/CoinDetails";
+
+// Action creators
+import { setCoin } from "../../actionCreators/coinDetails";
+import { setLoading } from "../../actionCreators/ui";
 
 // Clients
 import { getCoinDetails } from "../../clients/criptoGeckoClient";
 
 const CoinDetailsPage = () => {
   const params = useParams();
-  const [loading, setLoading] = useState(true);
-  const [coin, setCoin] = useState({});
+  const dispatch = useDispatch();
+  const getState = (state) => state;
+
+  const { coin } = useSelector(getState).coinDetails;
+  const { loading } = useSelector(getState).ui;
 
   useEffect(() => {
+    dispatch(setLoading(true));
+
     getCoinDetails({
       id: params.id,
       onSuccess: (coin) => {
-        setCoin(coin);
-        setLoading(false);
+        dispatch(setCoin(coin));
+        dispatch(setLoading(false));
       },
       onError: (error) => console.log(error),
     });
-    setLoading(false);
-  }, [params.id]);
+  }, [params.id, dispatch]);
 
   return (
     <>
       {loading && <Loading message="Fetching coin details..." />}
-      {coin && <CoinDetails {...coin} />}
+      {!loading && coin && <CoinDetails {...coin} />}
     </>
   );
 };

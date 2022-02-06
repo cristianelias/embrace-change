@@ -1,5 +1,16 @@
 // Dependencies
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+// Action creators
+import {
+  setCoins,
+  setOrderBy,
+  setPerPage,
+  setCurrentPage,
+} from "../../actionCreators/coinMarket";
+import { setLoading, setUpdateInterval } from "../../actionCreators/ui";
+import { setCurrency } from "../../actionCreators/preferences";
 
 // Components
 import Loading from "../../components/Loading/Loading";
@@ -9,13 +20,13 @@ import CoinMarketRow from "../../components/CoinMarketRow/CoinMarketRow";
 import { getCoinsMarketData } from "../../clients/criptoGeckoClient";
 
 const CoinMarketPage = () => {
-  const [coins, setCoins] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [currency, setCurrency] = useState("USD");
-  const [orderBy, setOrderBy] = useState("market_cap_desc");
-  const [perPage, setPerPage] = useState(50);
-  const [page, setPage] = useState(1);
-  const [updateInterval, setUpdateInterval] = useState(5000);
+  const dispatch = useDispatch();
+  const getState = (state) => state;
+
+  const { coins, currentPage, orderBy, perPage } =
+    useSelector(getState).coinMarket;
+  const { currency } = useSelector(getState).preferences;
+  const { loading, updateInterval } = useSelector(getState).ui;
 
   useEffect(() => {
     const fetchData = () =>
@@ -23,25 +34,24 @@ const CoinMarketPage = () => {
         currency,
         orderBy,
         perPage,
-        page,
+        currentPage,
         onError: (error) => console.log(error),
         onSuccess: (coins) => {
-          setCoins(coins);
-          setLoading(false);
+          dispatch(setCoins(coins));
+          dispatch(setLoading(false));
         },
       });
 
-    setLoading(true);
+    dispatch(setLoading(true));
     fetchData();
 
     const intervalId = setInterval(() => {
-      // disabled this while developing so I won't get blacklisted
+      console.log(`Interval excecuted ${updateInterval}`);
       // fetchData();
-      console.log("Interval executed", updateInterval);
     }, updateInterval);
 
     return () => clearInterval(intervalId);
-  }, [currency, orderBy, perPage, page, updateInterval]);
+  }, [currency, orderBy, perPage, currentPage, updateInterval, dispatch]);
 
   return (
     <>
@@ -50,7 +60,7 @@ const CoinMarketPage = () => {
           <label htmlFor="currency">Reference currency</label>
           <select
             name="currency"
-            onChange={(e) => setCurrency(e.target.value)}
+            onChange={(e) => dispatch(setCurrency(e.target.value))}
             defaultValue={currency}
           >
             <option value="USD">USD</option>
@@ -61,8 +71,8 @@ const CoinMarketPage = () => {
           <label htmlFor="page">Page</label>
           <select
             name="page"
-            onChange={(e) => setPage(e.target.value)}
-            defaultValue={page}
+            onChange={(e) => dispatch(setCurrentPage(e.target.value))}
+            defaultValue={currentPage}
           >
             <option value="1">1</option>
             <option value="2">2</option>
@@ -79,7 +89,7 @@ const CoinMarketPage = () => {
           <label htmlFor="orderBy">Order by</label>
           <select
             name="orderBy"
-            onChange={(e) => setOrderBy(e.target.value)}
+            onChange={(e) => dispatch(setOrderBy(e.target.value))}
             defaultValue={orderBy}
           >
             <option value="market_cap_desc">market_cap_desc</option>
@@ -96,7 +106,7 @@ const CoinMarketPage = () => {
           <label htmlFor="perPage">Results per page</label>
           <select
             name="perPage"
-            onChange={(e) => setPerPage(e.target.value)}
+            onChange={(e) => dispatch(setPerPage(e.target.value))}
             defaultValue={perPage}
           >
             <option value="50">50</option>
@@ -109,7 +119,7 @@ const CoinMarketPage = () => {
           <label htmlFor="updateInterval">Update interval</label>
           <select
             name="updateInterval"
-            onChange={(e) => setUpdateInterval(e.target.value)}
+            onChange={(e) => dispatch(setUpdateInterval(e.target.value))}
             defaultValue={updateInterval}
           >
             <option value="1000">1 second</option>
@@ -122,13 +132,15 @@ const CoinMarketPage = () => {
       </div>
 
       {loading && <Loading message="Retrieving market data..." />}
-      <ol>
-        {coins.map((coinMeta, index) => (
-          <li key={index}>
-            <CoinMarketRow {...coinMeta} />
-          </li>
-        ))}
-      </ol>
+      {!loading && (
+        <ol>
+          {coins.map((coinMeta, index) => (
+            <li key={index}>
+              <CoinMarketRow {...coinMeta} />
+            </li>
+          ))}
+        </ol>
+      )}
     </>
   );
 };

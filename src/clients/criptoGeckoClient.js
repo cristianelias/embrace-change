@@ -30,9 +30,9 @@ const getCoinsMarketData = async ({
   currency,
   orderBy,
   perPage,
-  page,
+  currentPage,
 }) => {
-  const endpoint = `coins/markets?vs_currency=${currency}&order=${orderBy}&per_page=${perPage}&page=${page}&price_change_percentage=24h,7d,30d&sparkline=false`;
+  const endpoint = `coins/markets?vs_currency=${currency}&order=${orderBy}&per_page=${perPage}&page=${currentPage}&price_change_percentage=24h,7d,30d&sparkline=false`;
 
   try {
     const response = await axios.get(
