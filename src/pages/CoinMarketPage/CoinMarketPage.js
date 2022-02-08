@@ -2,7 +2,8 @@
 // Dependencies
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { jsx, css } from "@emotion/react";
+import { jsx } from "@emotion/react";
+import styled from "@emotion/styled";
 
 // Action creators
 import { setCoins } from "../../actionCreators/coinMarket";
@@ -15,6 +16,10 @@ import CoinList from "../../components/CoinList/CoinList";
 
 // Clients
 import { getCoinsMarketData } from "../../clients/criptoGeckoClient";
+
+const ListContainer = styled.section`
+  margin-top: 80px;
+`;
 
 const CoinMarketPage = () => {
   const dispatch = useDispatch();
@@ -51,11 +56,11 @@ const CoinMarketPage = () => {
   }, [currency, orderBy, perPage, currentPage, updateInterval, dispatch]);
 
   return (
-    <>
+    <ListContainer>
       <CoinListFilters />
       {loading && <Loading message="Retrieving market data..." />}
       <CoinList />
-    </>
+    </ListContainer>
   );
 };
 

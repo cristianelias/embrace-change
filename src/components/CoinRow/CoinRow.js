@@ -2,6 +2,19 @@
 // Dependencies
 import { Link } from "react-router-dom";
 import { jsx, css } from "@emotion/react";
+import styled from "@emotion/styled";
+
+// Entities
+import Price from "../../entities/Price";
+
+const StyledLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  border: 1px solid hotpink;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  text-align: center;
+`;
 
 const CoinRow = (props) => {
   const {
@@ -16,36 +29,30 @@ const CoinRow = (props) => {
     priceChange1hPercentInCurrency,
     priceChangePercent24hInCurrency,
     priceChangePercent7dInCurrency,
+    currency,
   } = props;
 
-  const getDataOrFallback = (data) => {
-    return data || <span>❌</span>;
+  const getFormattedAmounts = (amount) => {
+    return new Price(amount).getFormattedPrice(currency);
+  };
+
+  const getFormattedPercentage = (percentage) => {
+    return (
+      <>
+        <span>%</span> {percentage.toFixed(1)}
+      </>
+    );
   };
 
   return (
-    <Link to={`/${id}/details`}>
-      <article
-        css={css`
-          border: 1px solid hotpink;
-          display: grid;
-          grid-template-columns: repeat(8, 1fr);
-          text-align: center;
-        `}
-      >
-        <div
-          css={css`
-            grid-column: 1/2;
-          `}
-        >
+    <article>
+      <StyledLink to={`/${id}/details`}>
+        <div>
           <span>#</span>
-          <span>{getDataOrFallback(marketCapRank)}</span>
+          <span>{marketCapRank}</span>
         </div>
 
-        <div
-          css={css`
-            grid-column: 2/3;
-          `}
-        >
+        <div>
           <img
             css={css`
               height: 30px;
@@ -53,59 +60,23 @@ const CoinRow = (props) => {
             src={image}
             alt={`${name} logo`}
           />
-          <span>{getDataOrFallback(symbol.toUpperCase())}</span>
-          <span>{getDataOrFallback(name.toUpperCase())}</span>
+          <span>{symbol.toUpperCase()}</span>
+          <span>{name.toUpperCase()}</span>
         </div>
 
-        <p
-          css={css`
-            grid-column: 3/4;
-          `}
-        >
-          {getDataOrFallback(currentPrice)}
-        </p>
+        <p>{getFormattedAmounts(currentPrice)}</p>
 
-        <p
-          css={css`
-            grid-column: 4/5;
-          `}
-        >
-          {getDataOrFallback(totalVolume)}
-        </p>
+        <p>{getFormattedAmounts(totalVolume)}</p>
 
-        <p
-          css={css`
-            grid-column: 5/6;
-          `}
-        >
-          {getDataOrFallback(marketCap)}
-        </p>
+        <p>{getFormattedAmounts(marketCap)}</p>
 
-        <p
-          css={css`
-            grid-column: 6/7;
-          `}
-        >
-          {getDataOrFallback(priceChange1hPercentInCurrency)}
-        </p>
+        <p>{getFormattedPercentage(priceChange1hPercentInCurrency)}</p>
 
-        <p
-          css={css`
-            grid-column: 7/8;
-          `}
-        >
-          {getDataOrFallback(priceChangePercent24hInCurrency)}
-        </p>
+        <p>{getFormattedPercentage(priceChangePercent24hInCurrency)}</p>
 
-        <p
-          css={css`
-            grid-column: 8/9;
-          `}
-        >
-          {getDataOrFallback(priceChangePercent7dInCurrency)}
-        </p>
-      </article>
-    </Link>
+        <p>{getFormattedPercentage(priceChangePercent7dInCurrency)}</p>
+      </StyledLink>
+    </article>
   );
 };
 
