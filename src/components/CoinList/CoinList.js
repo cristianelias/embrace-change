@@ -20,9 +20,8 @@ const CoinList = () => {
     <article>
       <header
         css={css`
-          border: 1px solid hotpink;
           display: grid;
-          grid-template-columns: repeat(8, 1fr);
+          grid-template-columns: 30px 38% 10% 10% 10% 10% 10% 10%;
           text-align: center;
           padding: 20px 0;
         `}

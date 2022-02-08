@@ -10,10 +10,26 @@ import Price from "../../entities/Price";
 const StyledLink = styled(Link)`
   display: flex;
   align-items: center;
-  border: 1px solid hotpink;
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: 30px 38% 10% 10% 10% 10% 10% 10%;
   text-align: center;
+  height: 70px;
+  margin-bottom: 10px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background-color: #ffff;
+  border-radius: 5px;
+  padding: 0 25px;
+
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+`;
+
+const Cell = styled.span`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
 `;
 
 const CoinRow = (props) => {
@@ -47,12 +63,16 @@ const CoinRow = (props) => {
   return (
     <article>
       <StyledLink to={`/${id}/details`}>
-        <div>
+        <Cell>
           <span>#</span>
           <span>{marketCapRank}</span>
-        </div>
+        </Cell>
 
-        <div>
+        <Cell
+          css={css`
+            justify-content: flex-start;
+          `}
+        >
           <img
             css={css`
               height: 30px;
@@ -62,19 +82,19 @@ const CoinRow = (props) => {
           />
           <span>{symbol.toUpperCase()}</span>
           <span>{name.toUpperCase()}</span>
-        </div>
+        </Cell>
 
-        <p>{getFormattedAmounts(currentPrice)}</p>
+        <Cell>{getFormattedAmounts(currentPrice)}</Cell>
 
-        <p>{getFormattedAmounts(totalVolume)}</p>
+        <Cell>{getFormattedAmounts(totalVolume)}</Cell>
 
-        <p>{getFormattedAmounts(marketCap)}</p>
+        <Cell>{getFormattedAmounts(marketCap)}</Cell>
 
-        <p>{getFormattedPercentage(priceChange1hPercentInCurrency)}</p>
+        <Cell>{getFormattedPercentage(priceChange1hPercentInCurrency)}</Cell>
 
-        <p>{getFormattedPercentage(priceChangePercent24hInCurrency)}</p>
+        <Cell>{getFormattedPercentage(priceChangePercent24hInCurrency)}</Cell>
 
-        <p>{getFormattedPercentage(priceChangePercent7dInCurrency)}</p>
+        <Cell>{getFormattedPercentage(priceChangePercent7dInCurrency)}</Cell>
       </StyledLink>
     </article>
   );
