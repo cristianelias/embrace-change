@@ -6,6 +6,7 @@ import styled from "@emotion/styled";
 
 // Entities
 import Price from "../../entities/Price";
+import Percentage from "../../entities/Percentage";
 
 const StyledLink = styled(Link)`
   display: flex;
@@ -48,14 +49,31 @@ const CoinRow = (props) => {
     currency,
   } = props;
 
-  const getFormattedAmounts = (amount) => {
-    return new Price(amount).getFormattedPrice(currency);
-  };
+  const getFormattedPrice = (amount) => {
+    const { symbol, price } = new Price(amount).format(currency);
 
-  const getFormattedPercentage = (percentage) => {
+    if (price === false) {
+      return <span>-</span>;
+    }
+
     return (
       <>
-        <span>%</span> {percentage.toFixed(1)}
+        <span>{symbol}</span> {price}
+      </>
+    );
+  };
+
+  const getFormattedPercentage = (rawPercentage) => {
+    const percentage = new Percentage(rawPercentage).format();
+
+    if (percentage === false) {
+      return <span>-</span>;
+    }
+
+    return (
+      <>
+        {percentage}
+        <span>%</span>
       </>
     );
   };
@@ -80,15 +98,15 @@ const CoinRow = (props) => {
             src={image}
             alt={`${name} logo`}
           />
-          <span>{symbol.toUpperCase()}</span>
-          <span>{name.toUpperCase()}</span>
+          <span>{symbol?.toUpperCase()}</span>
+          <span>{name?.toUpperCase()}</span>
         </Cell>
 
-        <Cell>{getFormattedAmounts(currentPrice)}</Cell>
+        <Cell>{getFormattedPrice(currentPrice)}</Cell>
 
-        <Cell>{getFormattedAmounts(totalVolume)}</Cell>
+        <Cell>{getFormattedPrice(totalVolume)}</Cell>
 
-        <Cell>{getFormattedAmounts(marketCap)}</Cell>
+        <Cell>{getFormattedPrice(marketCap)}</Cell>
 
         <Cell>{getFormattedPercentage(priceChange1hPercentInCurrency)}</Cell>
 

@@ -8,7 +8,7 @@ class Price {
     const symbols = {
       USD: dollarSymbol,
       EUR: "€",
-      ARS: "$",
+      ARS: dollarSymbol,
     };
 
     return symbols[currency.toUpperCase()] || dollarSymbol;
@@ -34,9 +34,13 @@ class Price {
     }
   }
 
-  getFormattedPrice(currencyId) {
+  format(currencyId) {
     const shortened = this._shortenPrice();
-    return `${this._getSymbol(currencyId)} ${shortened}`;
+
+    return {
+      symbol: this._getSymbol(currencyId),
+      price: shortened,
+    };
   }
 }
 
