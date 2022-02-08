@@ -7,8 +7,12 @@ import { Link } from "react-router-dom";
 
 // Action creators
 import { setUpdateInterval } from "../../actionCreators/ui";
-import { setCurrency } from "../../actionCreators/preferences";
 
+// Components
+import CurrencyControls from "../CurrencyControls/CurrencyControls";
+import ControlContainer from "../ControlContainer/ControlContainer";
+
+// Assets
 import logo from "../../assets/images/cheems-logo.png";
 
 const Select = styled.select`
@@ -16,24 +20,12 @@ const Select = styled.select`
   padding: 0 15px;
   text-align: center;
   border-radius: 4px;
-  -webkit-align-self: flex-end;
-  -ms-flex-item-align: flex-end;
   align-self: flex-end;
-  width: 115px;
   border: none;
   outline: none;
   background-color: #fbf9f9;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
     rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-`;
-
-const SelectContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 50px;
-  height: 60px;
-  justify-content: space-between;
 `;
 
 const StyledLink = styled(Link)`
@@ -65,7 +57,6 @@ const Header = () => {
   const dispatch = useDispatch(useDispatch);
 
   const getState = (state) => state;
-  const { currency } = useSelector(getState).preferences;
   const { updateInterval } = useSelector(getState).ui;
 
   return (
@@ -93,31 +84,24 @@ const Header = () => {
       <div
         css={css`
           display: flex;
-          flex-flow: row wrap;
+          flex-direction: row;
           align-items: center;
           justify-content: space-between;
           height: 100%;
-          width: 245px;
+          gap: 34px;
         `}
       >
-        <SelectContainer>
-          <Label htmlFor="curency">Your currency</Label>
-          <Select
-            name="currency"
-            onChange={(e) => dispatch(setCurrency(e.target.value))}
-            defaultValue={currency}
-          >
-            <option value="USD">USD 🇺🇸</option>
-            <option value="ARS">ARS 🇦🇷</option>
-            <option value="EUR">EUR 💶</option>
-          </Select>
-        </SelectContainer>
-        <SelectContainer>
+        <CurrencyControls />
+
+        <ControlContainer>
           <Label htmlFor="updateInterval">Updating every</Label>
           <Select
             name="updateInterval"
             onChange={(e) => dispatch(setUpdateInterval(e.target.value))}
             defaultValue={updateInterval}
+            css={css`
+              color: #3e3e3e;
+            `}
           >
             <option value="1000">1 sec 🕓</option>
             <option value="2000">2 secs 🕓</option>
@@ -125,7 +109,7 @@ const Header = () => {
             <option value="4000">4 secs 🕓</option>
             <option value="5000">5 secs 🕓</option>
           </Select>
-        </SelectContainer>
+        </ControlContainer>
       </div>
     </StyledHeader>
   );

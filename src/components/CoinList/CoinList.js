@@ -5,25 +5,25 @@ import { useSelector } from "react-redux";
 import styled from "@emotion/styled";
 
 // Components
+import Row from "../Row/Row";
 import CoinRow from "../../components/CoinRow/CoinRow";
+
+const Cell = styled.div`
+  font-weight: bold;
+`;
+
+const GridHeader = Row.withComponent("header");
 
 const CoinList = () => {
   const getState = (state) => state;
   const { coins } = useSelector(getState).coinMarket;
   const { currency } = useSelector(getState).preferences;
 
-  const Cell = styled.div`
-    font-weight: bold;
-  `;
-
   return (
     <article>
-      <header
+      <GridHeader
         css={css`
-          display: grid;
-          grid-template-columns: 30px 38% 10% 10% 10% 10% 10% 10%;
-          text-align: center;
-          padding: 20px 0;
+          padding: 0;
         `}
       >
         <Cell>
@@ -43,7 +43,7 @@ const CoinList = () => {
         <Cell>24h</Cell>
 
         <Cell>1 week</Cell>
-      </header>
+      </GridHeader>
       <ol>
         {coins.map((coinMeta, index) => (
           <li key={index}>

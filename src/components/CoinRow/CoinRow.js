@@ -8,23 +8,10 @@ import styled from "@emotion/styled";
 import Price from "../../entities/Price";
 import Percentage from "../../entities/Percentage";
 
-const StyledLink = styled(Link)`
-  display: flex;
-  align-items: center;
-  display: grid;
-  grid-template-columns: 30px 38% 10% 10% 10% 10% 10% 10%;
-  text-align: center;
-  height: 70px;
-  margin-bottom: 10px;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  background-color: #ffff;
-  border-radius: 5px;
-  padding: 0 25px;
+// Components
+import Row from "../Row/Row";
 
-  &:hover {
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  }
-`;
+const StyledLinkRow = Row.withComponent(Link);
 
 const Cell = styled.span`
   display: flex;
@@ -80,7 +67,17 @@ const CoinRow = (props) => {
 
   return (
     <article>
-      <StyledLink to={`/${id}/details`}>
+      <StyledLinkRow
+        to={`/${id}/details`}
+        css={css`
+          background-color: #ffff;
+          box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+          &:hover {
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+          }
+        `}
+      >
         <Cell>
           <span>#</span>
           <span>{marketCapRank}</span>
@@ -113,7 +110,7 @@ const CoinRow = (props) => {
         <Cell>{getFormattedPercentage(priceChangePercent24hInCurrency)}</Cell>
 
         <Cell>{getFormattedPercentage(priceChangePercent7dInCurrency)}</Cell>
-      </StyledLink>
+      </StyledLinkRow>
     </article>
   );
 };
