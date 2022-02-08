@@ -12,16 +12,14 @@ const mapCoinsMarketResponse = (fromAPI) => ({
   image: fromAPI.image,
   currentPrice: fromAPI.current_price,
   marketCapRank: fromAPI.market_cap_rank,
+  marketCap: fromAPI.market_cap,
   totalVolume: fromAPI.total_volume,
-  highest24h: fromAPI.high_24h,
-  lowest24h: fromAPI.low_24h,
-  priceChangePercent7dInCurrency:
-    fromAPI.price_change_percentage_7d_in_currency,
-  priceChangePercent24h: fromAPI.price_change_percentage_24h,
+  priceChange1hPercentInCurrency:
+    fromAPI.price_change_percentage_1h_in_currency,
   priceChangePercent24hInCurrency:
     fromAPI.price_change_percentage_24h_in_currency,
-  priceChangePercent30dInCurrency:
-    fromAPI.price_change_percentage_30d_in_currency,
+  priceChangePercent7dInCurrency:
+    fromAPI.price_change_percentage_7d_in_currency,
 });
 
 const getCoinsMarketData = async ({
@@ -32,7 +30,7 @@ const getCoinsMarketData = async ({
   perPage,
   currentPage,
 }) => {
-  const endpoint = `coins/markets?vs_currency=${currency}&order=${orderBy}&per_page=${perPage}&page=${currentPage}&price_change_percentage=24h,7d,30d&sparkline=false`;
+  const endpoint = `coins/markets?vs_currency=${currency}&order=${orderBy}&per_page=${perPage}&page=${currentPage}&price_change_percentage=1h,24h,7d&sparkline=false`;
 
   try {
     const response = await axios.get(
