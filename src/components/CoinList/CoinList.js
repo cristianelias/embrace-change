@@ -7,6 +7,8 @@ import styled from "@emotion/styled";
 // Components
 import Row from "../Row/Row";
 import CoinRow from "../../components/CoinRow/CoinRow";
+import HideableBelowMedium from "../HideableBelowMedium/HideableBelowMedium";
+import HideableBelowSmall from "../HideableBelowSmall/HideableBelowSmall";
 
 const Cell = styled.div`
   font-weight: bold;
@@ -23,7 +25,10 @@ const CoinList = () => {
     <article>
       <GridHeader
         css={css`
-          padding: 0;
+          color: white;
+          font-weight: 800;
+          font-family: "Raleway";
+          font-size: 20px;
         `}
       >
         <Cell>
@@ -32,17 +37,24 @@ const CoinList = () => {
 
         <Cell>Coin</Cell>
 
-        <Cell>Price</Cell>
+        <Cell
+          css={css`
+            display: flex;
+            justify-content: flex-end;
+          `}
+        >
+          Price
+        </Cell>
 
-        <Cell>Vol</Cell>
+        <HideableBelowMedium>Vol</HideableBelowMedium>
 
-        <Cell>Market Cap</Cell>
+        <HideableBelowMedium>Market Cap</HideableBelowMedium>
 
         <Cell>1h</Cell>
 
-        <Cell>24h</Cell>
+        <HideableBelowSmall>24h</HideableBelowSmall>
 
-        <Cell>1 week</Cell>
+        <HideableBelowMedium>1 week</HideableBelowMedium>
       </GridHeader>
       <ol>
         {coins.map((coinMeta, index) => (

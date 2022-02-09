@@ -8,7 +8,7 @@ class Percentage {
       return false;
     }
 
-    return this.percentage.toFixed(1);
+    return this.percentage.toFixed(2);
   }
 }
 

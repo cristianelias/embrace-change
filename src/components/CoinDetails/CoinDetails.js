@@ -2,7 +2,6 @@
 // Dependencies
 import { jsx } from "@emotion/react";
 import styled from "@emotion/styled";
-import { Link } from "react-router-dom";
 import * as sanitizeHtml from "sanitize-html";
 import parse from "html-react-parser";
 
@@ -32,6 +31,7 @@ const CoinDetails = ({ symbol, name, description, image }) => {
   });
 
   const Container = styled.article`
+    background-color: white;
     font-family: "Raleway";
     border-radius: 4px;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,

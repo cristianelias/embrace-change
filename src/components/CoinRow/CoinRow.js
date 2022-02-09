@@ -10,6 +10,9 @@ import Percentage from "../../entities/Percentage";
 // Components
 import Row from "../Row/Row";
 import Cell from "../Cell/Cell";
+import CoinCell from "../CoinCell/CoinCell";
+import HideableBelowMedium from "../HideableBelowMedium/HideableBelowMedium";
+import HideableBelowSmall from "../HideableBelowSmall/HideableBelowSmall";
 
 const StyledLinkRow = Row.withComponent(Link);
 
@@ -46,10 +49,10 @@ const getCoinColorStatus = (priceOscillation) => {
   if (priceOscillation === 0) {
     return false;
   } else if (priceOscillation > 0) {
-    return "green";
+    return "rgb(14, 203, 129)";
   }
 
-  return "red";
+  return "rgb(246, 70, 93);";
 };
 
 const CoinRow = (props) => {
@@ -68,8 +71,6 @@ const CoinRow = (props) => {
     currency,
   } = props;
 
-  const priceCellColor = getCoinColorStatus(priceChange1hPercentInCurrency);
-
   return (
     <article>
       <StyledLinkRow
@@ -77,61 +78,66 @@ const CoinRow = (props) => {
         css={css`
           background-color: #ffff;
           box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+          color: rgba(0, 20, 42, 0.6);
 
           &:hover {
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
           }
         `}
       >
-        <Cell
-          contents={
-            <>
-              <span>#</span>
-              <span>{marketCapRank}</span>
-            </>
-          }
-        />
+        <Cell>
+          <span
+            css={css`
+              font-weight: bold;
+              font-family: "Raleway";
+              justify-content: flex-start;
+            `}
+          >
+            {marketCapRank}
+          </span>
+        </Cell>
+
+        <CoinCell symbol={symbol} name={name} image={image} />
 
         <Cell
           css={css`
-            justify-content: flex-start;
+            justify-content: flex-end;
           `}
-          contents={
-            <>
-              <img
-                css={css`
-                  height: 30px;
-                `}
-                src={image}
-                alt={`${name} logo`}
-              />
-              <span>{symbol?.toUpperCase()}</span>
-              <span>{name?.toUpperCase()}</span>
-            </>
-          }
-        />
+        >
+          {getFormattedPrice({ amount: currentPrice, currency })}
+        </Cell>
+
+        <HideableBelowMedium>
+          {getFormattedPrice({ amount: totalVolume, currency })}
+        </HideableBelowMedium>
+
+        <HideableBelowMedium>
+          {getFormattedPrice({ amount: marketCap, currency })}
+        </HideableBelowMedium>
 
         <Cell
-          color={priceCellColor}
-          contents={getFormattedPrice({ amount: currentPrice, currency })}
-        />
+          css={css`
+            color: ${getCoinColorStatus(priceChange1hPercentInCurrency)};
+          `}
+        >
+          {getFormattedPercentage(priceChange1hPercentInCurrency)}
+        </Cell>
 
-        <Cell contents={getFormattedPrice({ amount: totalVolume, currency })} />
+        <HideableBelowSmall
+          css={css`
+            color: ${getCoinColorStatus(priceChangePercent24hInCurrency)};
+          `}
+        >
+          {getFormattedPercentage(priceChangePercent24hInCurrency)}
+        </HideableBelowSmall>
 
-        <Cell contents={getFormattedPrice({ amount: marketCap, currency })} />
-
-        <Cell
-          color={priceCellColor}
-          contents={getFormattedPercentage(priceChange1hPercentInCurrency)}
-        />
-        <Cell
-          color={priceCellColor}
-          contents={getFormattedPercentage(priceChangePercent24hInCurrency)}
-        />
-        <Cell
-          color={priceCellColor}
-          contents={getFormattedPercentage(priceChangePercent7dInCurrency)}
-        />
+        <HideableBelowMedium
+          css={css`
+            color: ${getCoinColorStatus(priceChangePercent7dInCurrency)};
+          `}
+        >
+          {getFormattedPercentage(priceChangePercent7dInCurrency)}
+        </HideableBelowMedium>
       </StyledLinkRow>
     </article>
   );

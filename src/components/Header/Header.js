@@ -24,8 +24,6 @@ const Select = styled.select`
   border: none;
   outline: none;
   background-color: #fbf9f9;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
-    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 `;
 
 const StyledLink = styled(Link)`
@@ -35,11 +33,10 @@ const StyledLink = styled(Link)`
 
 const StyledHeader = styled.header`
   grid-column: 1/4;
-  padding: 0 6%;
-  background-color: #ffffffe6;
-  border-bottom: 1px solid #ebebeb;
+  padding: 15px 5%;
+  background-color: rgb(32 27 27 / 76%);
+  color: #edebeb;
   min-height: 60px;
-  height: 120px;
 
   display: flex;
   justify-content: space-between;
@@ -47,6 +44,30 @@ const StyledHeader = styled.header`
   position: fixed;
   left: 0;
   right: 0;
+
+  @media (max-width: 992px) {
+    img {
+      height: 80px;
+
+      & + span {
+        font-size: 18px;
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+    flex-direction: column;
+    padding: 10px 3% 25px;
+    gap: 10px;
+
+    img {
+      height: 60px;
+
+      & + span {
+        font-size: 16px;
+      }
+    }
+  }
 `;
 
 const Label = styled.label`

@@ -18,6 +18,7 @@ const globalCSSRules = css`
 
   html {
     font-size: 16px;
+    min-width: 340px;
   }
 
   body {
@@ -26,6 +27,12 @@ const globalCSSRules = css`
     padding: 0;
     background-color: #f8fafd;
     font-family: "Source Sans Pro";
+    background-image: linear-gradient(
+      -225deg,
+      #a4c2f9 0%,
+      #c5c1ff 20%,
+      #ffbac3 100%
+    );
   }
 
   a {
@@ -50,16 +57,25 @@ const Container = styled.section`
   display: grid;
   grid-template-columns: 10% auto 10%;
   grid-template-rows: 120px auto 200px;
+  justify-content: center;
+
+  @media (max-width: 992px) {
+    grid-template-columns: 6% auto 6%;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 4% auto 4%;
+  }
 `;
 
 const MainContent = styled.section`
-  background-color: #f8fafd;
   grid-column: 2/3;
   grid-row: 2/3;
   margin: 80px 0;
   min-height: 400px;
   display: flex;
   justify-content: center;
+  max-width: 1600px;
 `;
 
 const Layout = ({ children }) => {
