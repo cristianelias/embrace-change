@@ -35,7 +35,7 @@ module.exports = (env, { mode }) => {
       port: 3000,
       historyApiFallback: true,
     },
-    devtool: "source-map",
+    devtool: isProduction ? false : "source-map",
     module: {
       rules: [
         {

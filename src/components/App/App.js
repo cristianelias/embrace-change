@@ -9,10 +9,12 @@ import CoinDetailsPage from "../../pages/CoinDetailsPage/CoinDetailsPage";
 
 // Store
 import store from "../../store";
+import ScrollToTop from "../ScrollToTop/ScrollToTop";
 
 const App = () => (
   <Provider store={store}>
     <HashRouter>
+      <ScrollToTop />
       <Layout>
         <Routes>
           <Route path="/" element={<CoinMarketPage />} />
