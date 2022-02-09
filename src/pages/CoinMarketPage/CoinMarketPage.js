@@ -58,7 +58,6 @@ const CoinMarketPage = () => {
   return (
     <Container>
       <CoinListFilters />
-      {loading && <Loading message="Retrieving market data..." />}
       <CoinList />
     </Container>
   );

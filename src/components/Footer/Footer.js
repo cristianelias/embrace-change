@@ -9,15 +9,87 @@ import { getFriendlyExchanges } from "../../clients/criptoGeckoClient";
 
 // Components
 import ExchangeMediaObj from "../ExchangeMediaObj/ExchangeMediaObj";
+import Logo from "../Logo/Logo";
 
 const StyledFooter = styled.footer`
   color: white;
-  background-color: rgb(59, 59, 59);
-  display: flex;
-  justify-content: space-between;
-  padding: 50px;
+  background-color: rgb(37 34 34);
+
+  padding: 35px 50px;
   grid-row: 3/4;
   grid-column: 1/4;
+
+  display: grid;
+  grid-template-columns: 60% 40%;
+  grid-template-rows: auto auto;
+`;
+
+const Title = styled.h3`
+  font-size: 18px;
+`;
+
+const LogoContainer = styled.div`
+  display: flex;
+  align-content: space-between;
+  justify-content: flex-start;
+
+  img {
+    height: 60px;
+    width: 60px;
+  }
+
+  img + span {
+    display: none;
+  }
+`;
+
+const childrenCommonStyles = css`
+  padding: 10px 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+const InfoColumn = styled.div`
+  ${childrenCommonStyles};
+
+  grid-column: 1/2;
+  grid-row: 1/2;
+  gap: 10px;
+`;
+
+const CreditsColumn = styled.div`
+  ${childrenCommonStyles};
+
+  grid-column: 2/3;
+  grid-row: 1/2;
+  justify-content: center;
+`;
+
+const LinksColumn = styled.div`
+  ${childrenCommonStyles};
+
+  grid-column: 1/3;
+  grid-row: 2/3;
+  margin-top: 30px;
+`;
+
+const SiteDescription = styled.p`
+  font-size: 20px;
+`;
+
+const StrongText = styled.strong`
+  font-weight: 800;
+  font-family: "Raleway";
+`;
+
+const ListOfLinks = styled.ol`
+  display: flex;
+  flex-flow: row wrap;
+  gap: 50px;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Footer = () => {
@@ -39,52 +111,37 @@ const Footer = () => {
 
   return (
     <StyledFooter>
-      <div
-        css={css`
-          width: 30%;
-        `}
-      >
-        <div
-          css={css`
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-          `}
-        >
-          <img
-            css={css`
-              height: 70px;
-            `}
-            src="./Assets/cheems_logo-2.png"
-            alt=""
-          />
-          <h1>Title</h1>
-        </div>
-        <p className="presentation-footer__paragraph">
-          Complete cryptocurrency market coverage with live coin prices, charts
-          and crypto market cap featuring 14328 coins on 387 exchanges.
-        </p>
-      </div>
+      <InfoColumn>
+        <LogoContainer>
+          <Logo />
+        </LogoContainer>
+        <SiteDescription>
+          Complete <StrongText>cryptocurrency market</StrongText> coverage with{" "}
+          <StrongText>live coin prices</StrongText> and crypto market cap
+          featuring 14328 coins on 387 exchanges.
+        </SiteDescription>
+      </InfoColumn>
 
-      <div
-        css={css`
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-        `}
-      >
-        <h1>Melicoin</h1>
-        <ul
-          css={css`
-            grid-column: 1/2;
-          `}
-        >
+      <CreditsColumn>
+        <Title>
+          <a
+            href="https://github.com/cristianelias"
+            rel="noreferrer"
+            target="_blank"
+          >
+            Made with 🤍 by Cris
+          </a>
+        </Title>
+      </CreditsColumn>
+      <LinksColumn>
+        <ListOfLinks>
           {exchanges.map((exchangeMeta, index) => (
             <li key={index}>
               <ExchangeMediaObj {...exchangeMeta} />
             </li>
           ))}
-        </ul>
-      </div>
+        </ListOfLinks>
+      </LinksColumn>
     </StyledFooter>
   );
 };

@@ -56,7 +56,7 @@ const theme = {
 const Container = styled.section`
   display: grid;
   grid-template-columns: 10% auto 10%;
-  grid-template-rows: 120px auto 200px;
+  grid-template-rows: 120px auto auto;
   justify-content: center;
 
   @media (max-width: 992px) {
@@ -71,7 +71,7 @@ const Container = styled.section`
 const MainContent = styled.section`
   grid-column: 2/3;
   grid-row: 2/3;
-  margin: 80px 0;
+  margin: 80px 0px 100px;
   min-height: 400px;
   display: flex;
   justify-content: center;

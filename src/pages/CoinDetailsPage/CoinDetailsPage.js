@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 // Components
-import Loading from "../../components/Loading/Loading";
 import CoinDetails from "../../components/CoinDetails/CoinDetails";
 
 // Action creators
@@ -35,12 +34,7 @@ const CoinDetailsPage = () => {
     });
   }, [params.id, dispatch]);
 
-  return (
-    <>
-      {loading && <Loading message="Fetching coin details..." />}
-      {!loading && coin && <CoinDetails {...coin} />}
-    </>
-  );
+  return <>{!loading && coin && <CoinDetails {...coin} />}</>;
 };
 
 export default CoinDetailsPage;

@@ -74,8 +74,8 @@ const mapExchangesResponse = (foreignEntity) => ({
   trustScore: foreignEntity.trust_score_rank,
 });
 
-const getFriendlyExchanges = async ({ onError, onSuccess, id }) => {
-  const endpoint = `exchanges?per_page=10&page=1`;
+const getFriendlyExchanges = async ({ onError, onSuccess }) => {
+  const endpoint = `exchanges?per_page=20&page=1`;
 
   try {
     const response = await axios.get(assembleURL(endpoint), {

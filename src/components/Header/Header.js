@@ -3,7 +3,6 @@
 import { jsx, css } from "@emotion/react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "@emotion/styled";
-import { Link } from "react-router-dom";
 
 // Action creators
 import { setUpdateInterval } from "../../actionCreators/ui";
@@ -11,9 +10,7 @@ import { setUpdateInterval } from "../../actionCreators/ui";
 // Components
 import CurrencyControls from "../CurrencyControls/CurrencyControls";
 import ControlContainer from "../ControlContainer/ControlContainer";
-
-// Assets
-import logo from "../../assets/images/cheems-logo.png";
+import Logo from "../Logo/Logo";
 
 const Select = styled.select`
   height: 34px;
@@ -26,15 +23,11 @@ const Select = styled.select`
   background-color: #fbf9f9;
 `;
 
-const StyledLink = styled(Link)`
-  display: flex;
-  align-items: center;
-`;
-
 const StyledHeader = styled.header`
   grid-column: 1/4;
   padding: 15px 5%;
-  background-color: rgb(32 27 27 / 76%);
+  background-color: rgb(37 34 34 / 76%);
+
   color: #edebeb;
   min-height: 60px;
 
@@ -44,6 +37,10 @@ const StyledHeader = styled.header`
   position: fixed;
   left: 0;
   right: 0;
+
+  img {
+    height: 110px;
+  }
 
   @media (max-width: 992px) {
     img {
@@ -82,25 +79,7 @@ const Header = () => {
 
   return (
     <StyledHeader>
-      <StyledLink to={`/`}>
-        <img
-          src={logo}
-          alt="Site logo"
-          css={css`
-            height: 110px;
-          `}
-        />
-        <span
-          css={css`
-            font-family: "Raleway";
-            font-weight: bold;
-            font-size: 24px;
-            letter-spacing: -0.2px;
-          `}
-        >
-          Coin Market
-        </span>
-      </StyledLink>
+      <Logo />
 
       <div
         css={css`
