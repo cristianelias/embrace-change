@@ -38,24 +38,24 @@ const Title = styled.span`
   font-size: 14px;
 `;
 
+const currenciesConfig = [
+  {
+    id: "USD",
+    emoji: "🇺🇸",
+  },
+  {
+    id: "ARS",
+    emoji: "🇦🇷",
+  },
+  {
+    id: "EUR",
+    emoji: "🇪🇺",
+  },
+];
+
 const CurrencyControls = () => {
   const { currency } = useSelector((state) => state).preferences;
   const dispatch = useDispatch();
-
-  const currenciesConfig = [
-    {
-      id: "USD",
-      emoji: "🇺🇸",
-    },
-    {
-      id: "ARS",
-      emoji: "🇦🇷",
-    },
-    {
-      id: "EUR",
-      emoji: "🇪🇺",
-    },
-  ];
 
   return (
     <ControlContainer>

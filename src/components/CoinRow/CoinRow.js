@@ -2,7 +2,6 @@
 // Dependencies
 import { Link } from "react-router-dom";
 import { jsx, css } from "@emotion/react";
-import styled from "@emotion/styled";
 
 // Entities
 import Price from "../../entities/Price";
@@ -10,15 +9,48 @@ import Percentage from "../../entities/Percentage";
 
 // Components
 import Row from "../Row/Row";
+import Cell from "../Cell/Cell";
 
 const StyledLinkRow = Row.withComponent(Link);
 
-const Cell = styled.span`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: center;
-`;
+const getFormattedPrice = ({ amount, currency }) => {
+  const { symbol, price } = new Price(amount).format(currency);
+
+  if (price === false) {
+    return <span>-</span>;
+  }
+
+  return (
+    <>
+      <span>{symbol}</span> {price}
+    </>
+  );
+};
+
+const getFormattedPercentage = (rawPercentage) => {
+  const percentage = new Percentage(rawPercentage).format();
+
+  if (percentage === false) {
+    return <span>-</span>;
+  }
+
+  return (
+    <>
+      {percentage}
+      <span>%</span>
+    </>
+  );
+};
+
+const getCoinColorStatus = (priceOscillation) => {
+  if (priceOscillation === 0) {
+    return false;
+  } else if (priceOscillation > 0) {
+    return "green";
+  }
+
+  return "red";
+};
 
 const CoinRow = (props) => {
   const {
@@ -36,34 +68,7 @@ const CoinRow = (props) => {
     currency,
   } = props;
 
-  const getFormattedPrice = (amount) => {
-    const { symbol, price } = new Price(amount).format(currency);
-
-    if (price === false) {
-      return <span>-</span>;
-    }
-
-    return (
-      <>
-        <span>{symbol}</span> {price}
-      </>
-    );
-  };
-
-  const getFormattedPercentage = (rawPercentage) => {
-    const percentage = new Percentage(rawPercentage).format();
-
-    if (percentage === false) {
-      return <span>-</span>;
-    }
-
-    return (
-      <>
-        {percentage}
-        <span>%</span>
-      </>
-    );
-  };
+  const priceCellColor = getCoinColorStatus(priceChange1hPercentInCurrency);
 
   return (
     <article>
@@ -78,38 +83,55 @@ const CoinRow = (props) => {
           }
         `}
       >
-        <Cell>
-          <span>#</span>
-          <span>{marketCapRank}</span>
-        </Cell>
+        <Cell
+          contents={
+            <>
+              <span>#</span>
+              <span>{marketCapRank}</span>
+            </>
+          }
+        />
 
         <Cell
           css={css`
             justify-content: flex-start;
           `}
-        >
-          <img
-            css={css`
-              height: 30px;
-            `}
-            src={image}
-            alt={`${name} logo`}
-          />
-          <span>{symbol?.toUpperCase()}</span>
-          <span>{name?.toUpperCase()}</span>
-        </Cell>
+          contents={
+            <>
+              <img
+                css={css`
+                  height: 30px;
+                `}
+                src={image}
+                alt={`${name} logo`}
+              />
+              <span>{symbol?.toUpperCase()}</span>
+              <span>{name?.toUpperCase()}</span>
+            </>
+          }
+        />
 
-        <Cell>{getFormattedPrice(currentPrice)}</Cell>
+        <Cell
+          color={priceCellColor}
+          contents={getFormattedPrice({ amount: currentPrice, currency })}
+        />
 
-        <Cell>{getFormattedPrice(totalVolume)}</Cell>
+        <Cell contents={getFormattedPrice({ amount: totalVolume, currency })} />
 
-        <Cell>{getFormattedPrice(marketCap)}</Cell>
+        <Cell contents={getFormattedPrice({ amount: marketCap, currency })} />
 
-        <Cell>{getFormattedPercentage(priceChange1hPercentInCurrency)}</Cell>
-
-        <Cell>{getFormattedPercentage(priceChangePercent24hInCurrency)}</Cell>
-
-        <Cell>{getFormattedPercentage(priceChangePercent7dInCurrency)}</Cell>
+        <Cell
+          color={priceCellColor}
+          contents={getFormattedPercentage(priceChange1hPercentInCurrency)}
+        />
+        <Cell
+          color={priceCellColor}
+          contents={getFormattedPercentage(priceChangePercent24hInCurrency)}
+        />
+        <Cell
+          color={priceCellColor}
+          contents={getFormattedPercentage(priceChangePercent7dInCurrency)}
+        />
       </StyledLinkRow>
     </article>
   );

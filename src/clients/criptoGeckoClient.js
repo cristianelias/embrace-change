@@ -65,4 +65,27 @@ const getCoinDetails = async ({ onError, onSuccess, id }) => {
   }
 };
 
-export { getCoinsMarketData, getCoinDetails };
+const mapExchangesResponse = (foreignEntity) => ({
+  id: foreignEntity.id,
+  name: foreignEntity.name,
+  image: foreignEntity.image,
+  url: foreignEntity.url,
+  sinceYear: foreignEntity.year_established,
+  trustScore: foreignEntity.trust_score_rank,
+});
+
+const getFriendlyExchanges = async ({ onError, onSuccess, id }) => {
+  const endpoint = `exchanges?per_page=10&page=1`;
+
+  try {
+    const response = await axios.get(assembleURL(endpoint), {
+      crossDomain: true,
+    });
+    const exchanges = response.data.map(mapExchangesResponse);
+    onSuccess(exchanges);
+  } catch (error) {
+    onError(error);
+  }
+};
+
+export { getCoinsMarketData, getCoinDetails, getFriendlyExchanges };
