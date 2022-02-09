@@ -9,6 +9,7 @@ import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 
 // Assets
+import "@fontsource/raleway/500.css";
 import "@fontsource/raleway/800.css";
 import "@fontsource/source-sans-pro";
 
@@ -57,6 +58,8 @@ const MainContent = styled.section`
   grid-row: 2/3;
   margin: 80px 0;
   min-height: 400px;
+  display: flex;
+  justify-content: center;
 `;
 
 const Layout = ({ children }) => {
