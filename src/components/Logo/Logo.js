@@ -21,7 +21,7 @@ const CompanyName = styled.span`
 
 const Logo = () => (
   <StyledLink to={`/`}>
-    <img src={logo} alt="Site logo" />
+    <img src={logo} alt="Coin Market logo" />
     <CompanyName>Coin Market</CompanyName>
   </StyledLink>
 );
