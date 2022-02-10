@@ -140,7 +140,7 @@ const Footer = () => {
             rel="noreferrer"
             target="_blank"
           >
-            Made with 🤍 by Cris
+            Made with 🤍 by Cris for Embrace
           </a>
         </Title>
       </MainRow>
