@@ -1,6 +1,10 @@
 class Percentage {
   constructor(percentage) {
-    this.percentage = percentage;
+    if (percentage === undefined || percentage === null) {
+      this.percentage = 0;
+    } else {
+      this.percentage = percentage;
+    }
   }
 
   format() {

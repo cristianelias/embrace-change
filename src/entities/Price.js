@@ -1,6 +1,10 @@
 class Price {
   constructor(amount) {
-    this.amount = amount;
+    if (amount === undefined || amount === null) {
+      this.amount = 0;
+    } else {
+      this.amount = amount;
+    }
   }
 
   _getSymbol(currency) {

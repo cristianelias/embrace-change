@@ -1,7 +1,7 @@
 /** @jsx jsx */
 // Dependencies
 import { useEffect, useState } from "react";
-import { jsx, css } from "@emotion/react";
+import { jsx } from "@emotion/react";
 import styled from "@emotion/styled";
 
 // Clients
@@ -18,6 +18,7 @@ const StyledFooter = styled.footer`
   padding: 35px 50px;
   grid-row: 3/4;
   grid-column: 1/4;
+  z-index: 3;
 `;
 
 const Title = styled.h3`
