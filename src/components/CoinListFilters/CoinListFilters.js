@@ -114,8 +114,8 @@ const CoinListFilters = () => {
           onChange={(e) => dispatch(setOrderBy(e.target.value))}
           defaultValue={orderBy}
         >
-          <option value="market_cap_desc">Market Cap Asc</option>
-          <option value="market_cap_asc">Market Cap Desc</option>
+          <option value="market_cap_desc">Market Cap Desc</option>
+          <option value="market_cap_asc">Market Cap Asc</option>
           <option value="gecko_desc">Score Desc</option>
           <option value="gecko_asc">Score Asc</option>
           <option value="volume_asc">Volume Asc</option>
