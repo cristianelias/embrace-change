@@ -91,6 +91,10 @@ const CoinRow = (props) => {
               font-weight: bold;
               font-family: "Raleway";
               justify-content: flex-start;
+
+              @media (max-width: 576px) {
+                font-size: 14px;
+              }
             `}
           >
             {marketCapRank}

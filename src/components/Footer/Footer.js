@@ -19,12 +19,21 @@ const StyledFooter = styled.footer`
   grid-row: 3/4;
   grid-column: 1/4;
   z-index: 3;
+
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 `;
 
 const Title = styled.h3`
   font-size: 15px;
-  width: 40%;
+  width: 30%;
   text-align: right;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    text-align: center;
+  }
 `;
 
 const LogoWrapper = styled.div`
@@ -41,13 +50,27 @@ const LogoWrapper = styled.div`
 const MainRow = styled.div`
   padding: 10px 15px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   gap: 35px;
+
+  @media (max-width: 768px) {
+    padding: 35px 50px;
+    flex-direction: column;
+  }
+
+  @media (max-width: 440px) {
+    padding: 35px 15px;
+  }
 `;
 
 const SiteDescription = styled.p`
-  font-size: 20px;
+  font-size: 18px;
+  letter-spacing: 0.9px;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 `;
 
 const StrongText = styled.strong`
@@ -62,12 +85,21 @@ const ListOfLinks = styled.ol`
   flex-flow: row wrap;
   justify-content: space-evenly;
   align-items: center;
+
+  @media (max-width: 768px) {
+    margin: 10px 20px 60px 20px;
+  }
 `;
 
 const IdentityContainer = styled.div`
-  width: 60%;
+  width: 70%;
   display: flex;
   gap: 10px;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const Footer = () => {
@@ -95,9 +127,8 @@ const Footer = () => {
             <Logo />
           </LogoWrapper>
           <SiteDescription>
-            Complete <StrongText>cryptocurrency market</StrongText> coverage
-            with
-            <StrongText>live coin prices</StrongText> and crypto market cap
+            Complete<StrongText> cryptocurrency market </StrongText>coverage
+            with<StrongText> live coin prices </StrongText>and crypto market cap
             featuring 14328 coins on 387 exchanges.
           </SiteDescription>
         </IdentityContainer>
