@@ -105,6 +105,10 @@ const MainContent = styled.section`
   display: flex;
   justify-content: center;
   max-width: 1600px;
+
+  @media (max-width: 505px) {
+    margin-top: 10px;
+  }
 `;
 
 const Layout = ({ children }) => {

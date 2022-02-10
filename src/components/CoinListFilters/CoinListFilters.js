@@ -20,6 +20,14 @@ const MainContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 40px;
+
+  @media (max-width: 505px) {
+    flex-direction: column;
+    gap: 25px;
+    align-items: flex-start;
+
+    margin-bottom: 20px;
+  }
 `;
 
 const Label = styled.label`
@@ -29,13 +37,19 @@ const Label = styled.label`
 const LeftColumn = styled.div`
   display: flex;
   gap: 40px;
+
+  @media (max-width: 505px) {
+    flex-direction: column;
+    gap: 25px;
+    align-items: flex-start;
+  }
 `;
 
 const RightColumn = styled(FlexCenteredCol)`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-end;
+  align-items: flex-start;
 `;
 
 const FlexInputContainer = styled(FlexCenteredCol)`
