@@ -5,6 +5,11 @@ import styled from "@emotion/styled";
 import * as sanitizeHtml from "sanitize-html";
 import parse from "html-react-parser";
 
+// Components
+import CoinDetailsContainer from "../Styled/CoinDetailsContainer";
+import CoinDetailsImage from "../Styled/CoinDetailsImage";
+import CoinSymbolContainer from "../Styled/CoinDetailsSymbolContainer";
+
 const CoinDetails = ({ symbol, name, description, image }) => {
   /* 👋 Hey there!
   Look, I know this is weird... For some reason CoinGecko is returning 
@@ -30,38 +35,9 @@ const CoinDetails = ({ symbol, name, description, image }) => {
     allowedIframeHostnames: ["www.coingecko.com"],
   });
 
-  const Container = styled.article`
-    background-color: white;
-    font-family: "Raleway";
-    border-radius: 4px;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
-      rgba(0, 0, 0, 0.22) 0px 15px 12px;
-    display: flex;
-    flex-direction: column;
-    padding: 60px 80px;
-    max-width: 700px;
-    align-items: center;
-    gap: 25px;
-    user-select: none;
-  `;
-
-  const CoinImage = styled.img`
-    border-radius: 50%;
-    height: 180px;
-    width: 180px;
-    padding: 34px;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
-    background-color: white;
-  `;
-
   const CoinName = styled.span`
     font-size: 28px;
     font-weight: 800;
-  `;
-
-  const CoinSymbolContainer = styled.span`
-    font-size: 24px;
-    margin-top: -15px;
   `;
 
   const CoinSymbolText = styled.span`
@@ -82,15 +58,15 @@ const CoinDetails = ({ symbol, name, description, image }) => {
   `;
 
   return (
-    <Container>
-      <CoinImage src={image} alt={name} />
+    <CoinDetailsContainer>
+      <CoinDetailsImage src={image} alt={name} />
       <CoinName>{name}</CoinName>
 
       <CoinSymbolContainer>
         ( <CoinSymbolText>{symbol?.toUpperCase()}</CoinSymbolText> )
       </CoinSymbolContainer>
       <CoinDescription>{parse(cleanDescription)}</CoinDescription>
-    </Container>
+    </CoinDetailsContainer>
   );
 };
 

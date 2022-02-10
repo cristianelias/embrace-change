@@ -1,6 +1,7 @@
+// Dependencies
 import styled from "@emotion/styled";
 
-export default styled.div`
+const Row = styled.div`
   display: flex;
   align-items: center;
   display: grid;
@@ -20,3 +21,5 @@ export default styled.div`
     grid-template-columns: 6% 38% 25% 25%;
   }
 `;
+
+export default Row;

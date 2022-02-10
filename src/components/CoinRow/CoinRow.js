@@ -8,11 +8,11 @@ import Price from "../../entities/Price";
 import Percentage from "../../entities/Percentage";
 
 // Components
-import Row from "../Row/Row";
-import Cell from "../Cell/Cell";
+import Row from "../Styled/Row";
+import Cell from "../Styled/Cell";
 import CoinCell from "../CoinCell/CoinCell";
-import HideableBelowMedium from "../HideableBelowMedium/HideableBelowMedium";
-import HideableBelowSmall from "../HideableBelowSmall/HideableBelowSmall";
+import HideableBelowMedium from "../Styled/HideableBelowMedium";
+import HideableBelowSmall from "../Styled/HideableBelowSmall";
 
 const StyledLinkRow = Row.withComponent(Link);
 

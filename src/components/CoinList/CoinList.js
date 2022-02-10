@@ -5,10 +5,10 @@ import { useSelector } from "react-redux";
 import styled from "@emotion/styled";
 
 // Components
-import Row from "../Row/Row";
+import Row from "../Styled/Row";
 import CoinRow from "../../components/CoinRow/CoinRow";
-import HideableBelowMedium from "../HideableBelowMedium/HideableBelowMedium";
-import HideableBelowSmall from "../HideableBelowSmall/HideableBelowSmall";
+import HideableBelowMedium from "../Styled/HideableBelowMedium";
+import HideableBelowSmall from "../Styled/HideableBelowSmall";
 
 const Cell = styled.div`
   font-weight: bold;

@@ -3,7 +3,7 @@
 import styled from "@emotion/styled";
 
 // Components
-import Cell from "../Cell/Cell";
+import Cell from "./Cell";
 
 const HideableBelowMedium = styled(Cell)`
   @media (max-width: 768px) {

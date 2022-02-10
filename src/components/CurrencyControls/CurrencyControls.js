@@ -8,7 +8,7 @@ import styled from "@emotion/styled";
 import { setCurrency } from "../../actionCreators/preferences";
 
 // Components
-import ControlContainer from "../ControlContainer/ControlContainer";
+import ControlContainer from "../Styled/ControlContainer";
 
 const PillContainer = styled.div`
   display: flex;

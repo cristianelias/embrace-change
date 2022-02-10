@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 import { jsx } from "@emotion/react";
 
 // Components
-import HideableBelowMedium from "../HideableBelowMedium/HideableBelowMedium";
+import HideableBelowMedium from "../Styled/HideableBelowMedium";
 
 const Container = styled.span`
   display: flex;

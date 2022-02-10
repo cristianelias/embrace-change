@@ -19,6 +19,7 @@ const globalCSSRules = css`
   html {
     font-size: 16px;
     min-width: 340px;
+    min-height: 100vh;
   }
 
   body {
@@ -56,7 +57,7 @@ const theme = {
 const Container = styled.section`
   display: grid;
   grid-template-columns: 10% auto 10%;
-  grid-template-rows: 120px auto auto;
+  grid-template-rows: 140px auto auto;
   justify-content: center;
 
   @media (max-width: 992px) {
@@ -72,7 +73,7 @@ const MainContent = styled.section`
   grid-column: 2/3;
   grid-row: 2/3;
   margin: 80px 0px 100px;
-  min-height: 400px;
+  min-height: 600px;
   display: flex;
   justify-content: center;
   max-width: 1600px;

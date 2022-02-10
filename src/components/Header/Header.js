@@ -9,7 +9,7 @@ import { setUpdateInterval } from "../../actionCreators/ui";
 
 // Components
 import CurrencyControls from "../CurrencyControls/CurrencyControls";
-import ControlContainer from "../ControlContainer/ControlContainer";
+import ControlContainer from "../Styled/ControlContainer";
 import Logo from "../Logo/Logo";
 
 const Select = styled.select`

@@ -1,10 +1,12 @@
 // Dependencies
 import styled from "@emotion/styled";
 
-export default styled.div`
+const ControlContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   gap: 15px;
 `;
+
+export default ControlContainer;

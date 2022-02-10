@@ -2,7 +2,7 @@
 // Dependencies
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { jsx, css } from "@emotion/react";
+import { jsx } from "@emotion/react";
 import styled from "@emotion/styled";
 
 // Action creators
@@ -10,7 +10,6 @@ import { setCoins } from "../../actionCreators/coinMarket";
 import { setLoading } from "../../actionCreators/ui";
 
 // Components
-import Loading from "../../components/Loading/Loading";
 import CoinListFilters from "../../components/CoinListFilters/CoinListFilters";
 import CoinList from "../../components/CoinList/CoinList";
 

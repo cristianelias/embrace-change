@@ -12,6 +12,7 @@ import { setLoading } from "../../actionCreators/ui";
 
 // Clients
 import { getCoinDetails } from "../../clients/criptoGeckoClient";
+import CoinDetailsSkeleton from "../../components/CoinDetails/CoinDetailsSkeleton";
 
 const CoinDetailsPage = () => {
   const params = useParams();
@@ -34,7 +35,16 @@ const CoinDetailsPage = () => {
     });
   }, [params.id, dispatch]);
 
-  return <>{!loading && coin && <CoinDetails {...coin} />}</>;
+  return (
+    <>
+      {loading && <CoinDetailsSkeleton />}
+      {!loading && coin && (
+        <>
+          <CoinDetails {...coin} />
+        </>
+      )}
+    </>
+  );
 };
 
 export default CoinDetailsPage;
