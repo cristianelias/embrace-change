@@ -14,7 +14,11 @@ const CoinDetailsContainer = styled.article`
   align-items: center;
   gap: 25px;
   user-select: none;
-  width: 100%;
+  width: 90%;
+
+  @media (max-width: 768px) {
+    padding: 50px;
+  }
 `;
 
 export default CoinDetailsContainer;

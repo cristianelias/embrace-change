@@ -55,6 +55,14 @@ const CoinDetails = ({ symbol, name, description, image }) => {
       font-weight: 800;
       font-size: 20px;
     }
+
+    @media (max-width: 576px) {
+      font-size: 16px;
+
+      & > a {
+        font-size: 16px;
+      }
+    }
   `;
 
   return (

@@ -16,6 +16,10 @@ import "@fontsource/source-sans-pro";
 const globalCSSRules = css`
   ${emotionReset},
 
+  * {
+    box-sizing: border-box;
+  }
+
   html {
     font-size: 16px;
     min-width: 340px;

@@ -1,5 +1,6 @@
 // Dependencies
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -17,6 +18,7 @@ import CoinDetailsSkeleton from "../../components/CoinDetails/CoinDetailsSkeleto
 const CoinDetailsPage = () => {
   const params = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const getState = (state) => state;
 
   const { coin } = useSelector(getState).coinDetails;
@@ -31,9 +33,17 @@ const CoinDetailsPage = () => {
         dispatch(setCoin(coin));
         dispatch(setLoading(false));
       },
-      onError: (error) => console.log(error),
+      onError: (error) => {
+        console.log(
+          `Something went really wrong, take a look. Error: ${error}`
+        );
+        alert(
+          "Something went wrong while trying to fetch market data. We'll take you home now."
+        );
+        navigate({ path: "/" });
+      },
     });
-  }, [params.id, dispatch]);
+  }, [params.id, dispatch, navigate]);
 
   return (
     <>

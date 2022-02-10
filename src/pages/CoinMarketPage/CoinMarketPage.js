@@ -1,6 +1,7 @@
 /** @jsx jsx */
 // Dependencies
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { jsx } from "@emotion/react";
 import styled from "@emotion/styled";
@@ -23,10 +24,10 @@ const Container = styled.section`
 const CoinMarketPage = () => {
   const dispatch = useDispatch();
   const getState = (state) => state;
-
+  const navigate = useNavigate();
   const { currentPage, orderBy, perPage } = useSelector(getState).coinMarket;
   const { currency } = useSelector(getState).preferences;
-  const { loading, updateInterval } = useSelector(getState).ui;
+  const { updateInterval } = useSelector(getState).ui;
 
   useEffect(() => {
     const fetchData = () => {
@@ -35,7 +36,15 @@ const CoinMarketPage = () => {
         orderBy,
         perPage,
         currentPage,
-        onError: (error) => console.log(error),
+        onError: (error) => {
+          console.log(
+            `Something went really wrong, take a look. Error: ${error}`
+          );
+          alert(
+            "Something went wrong while trying to fetch market data. We'll take you home now."
+          );
+          navigate({ path: "/" });
+        },
         onSuccess: (coins) => {
           dispatch(setCoins(coins));
           dispatch(setLoading(false));
@@ -52,7 +61,15 @@ const CoinMarketPage = () => {
     }, updateInterval);
 
     return () => clearInterval(intervalId);
-  }, [currency, orderBy, perPage, currentPage, updateInterval, dispatch]);
+  }, [
+    currency,
+    orderBy,
+    perPage,
+    currentPage,
+    updateInterval,
+    dispatch,
+    navigate,
+  ]);
 
   return (
     <Container>

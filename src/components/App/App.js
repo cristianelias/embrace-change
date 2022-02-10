@@ -11,20 +11,23 @@ import CoinDetailsPage from "../../pages/CoinDetailsPage/CoinDetailsPage";
 import store from "../../store";
 import ScrollToTop from "../ScrollToTop/ScrollToTop";
 import NotFound from "../../pages/NotFound/NotFound";
+import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
 
 const App = () => (
-  <Provider store={store}>
-    <HashRouter>
-      <ScrollToTop />
-      <Layout>
-        <Routes>
-          <Route path="*" element={<NotFound />} />
-          <Route path="/" element={<CoinMarketPage />} />
-          <Route path="/:id/details" element={<CoinDetailsPage />} />
-        </Routes>
-      </Layout>
-    </HashRouter>
-  </Provider>
+  <ErrorBoundary>
+    <Provider store={store}>
+      <HashRouter>
+        <ScrollToTop />
+        <Layout>
+          <Routes>
+            <Route path="*" element={<NotFound />} />
+            <Route path="/" element={<CoinMarketPage />} />
+            <Route path="/:id/details" element={<CoinDetailsPage />} />
+          </Routes>
+        </Layout>
+      </HashRouter>
+    </Provider>
+  </ErrorBoundary>
 );
 
 export default App;
