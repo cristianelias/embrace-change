@@ -9,6 +9,7 @@ import Row from "../Styled/Row";
 import CoinRow from "../../components/CoinRow/CoinRow";
 import HideableBelowMedium from "../Styled/HideableBelowMedium";
 import HideableBelowSmall from "../Styled/HideableBelowSmall";
+import HideableBelowLarge from "../Styled/HideableBelowLarge";
 
 const Cell = styled.div`
   font-weight: bold;
@@ -55,7 +56,7 @@ const CoinList = () => {
 
         <HideableBelowSmall>24h</HideableBelowSmall>
 
-        <HideableBelowMedium>1 week</HideableBelowMedium>
+        <HideableBelowLarge>1 week</HideableBelowLarge>
       </GridHeader>
       <ol>
         {coins.map((coinMeta, index) => (

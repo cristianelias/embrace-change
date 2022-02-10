@@ -13,7 +13,7 @@ const StyledLink = styled(Link)`
 `;
 
 const CompanyName = styled.span`
-  font-family: "Raleway";
+  font-family: "IBM Plex Sans";
   font-weight: bold;
   font-size: 24px;
   letter-spacing: -0.2px;

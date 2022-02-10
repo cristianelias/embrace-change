@@ -11,7 +11,7 @@ import Footer from "../components/Footer/Footer";
 // Assets
 import "@fontsource/raleway/500.css";
 import "@fontsource/raleway/800.css";
-import "@fontsource/source-sans-pro";
+import "@fontsource/ibm-plex-sans";
 
 const theme = {
   header: {
@@ -72,7 +72,7 @@ const globalCSSRules = css`
     margin: 0;
     padding: 0;
     background: ${theme.body.background};
-    font-family: "Source Sans Pro";
+    font-family: "IBM Plex Sans";
   }
 
   a {
@@ -89,13 +89,18 @@ const Container = styled.section`
 
   @media (max-width: 992px) {
     grid-template-columns: 6% auto 6%;
+    grid-template-rows: 112px auto auto;
+  }
+
+  @media (max-width: 576px) {
+    grid-template-rows: 168px auto auto;
   }
 `;
 
 const MainContent = styled.section`
   grid-column: 2/3;
   grid-row: 2/3;
-  margin: 80px 0px 100px;
+  margin: 70px 0px 100px;
   min-height: 600px;
   display: flex;
   justify-content: center;

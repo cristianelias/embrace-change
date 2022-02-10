@@ -7,7 +7,8 @@ const ExchangeLink = styled.a`
   color: rgb(145, 145, 145);
   font-size: 16px;
   display: flex;
-  align-items: center;
+  gap: 10px;
+  align-items: flex-end;
 `;
 
 const ExchangeName = styled.span`
@@ -74,7 +75,7 @@ const ExchangeMediaObj = ({ name, image, url, sinceYear, trustScore }) => {
         )}
 
         <span>
-          <TrustLabel>Trust score</TrustLabel>
+          <TrustLabel>Score</TrustLabel>
           <Hashtag>#</Hashtag>
           <TrustValue>{trustScore}</TrustValue>
         </span>

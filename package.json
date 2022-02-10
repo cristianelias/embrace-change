@@ -16,8 +16,8 @@
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
+    "@fontsource/ibm-plex-sans": "^4.5.3",
     "@fontsource/raleway": "^4.5.2",
-    "@fontsource/source-sans-pro": "^4.5.3",
     "axios": "^0.25.0",
     "emotion-reset": "^3.0.1",
     "html-react-parser": "^1.4.8",

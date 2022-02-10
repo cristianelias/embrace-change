@@ -13,8 +13,12 @@ const Row = styled.div`
   border-radius: 5px;
   padding: 0 25px;
 
+  @media (max-width: 992px) {
+    grid-template-columns: 4% 29% 13% 13% 13% 8% 8%;
+  }
+
   @media (max-width: 768px) {
-    grid-template-columns: 4% 28% 20% 20% 20%;
+    grid-template-columns: 4% 33% 25% 15% 15%;
   }
 
   @media (max-width: 440px) {

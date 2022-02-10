@@ -13,6 +13,7 @@ import Cell from "../Styled/Cell";
 import CoinCell from "../CoinCell/CoinCell";
 import HideableBelowMedium from "../Styled/HideableBelowMedium";
 import HideableBelowSmall from "../Styled/HideableBelowSmall";
+import HideableBelowLarge from "../Styled/HideableBelowLarge";
 
 const StyledLinkRow = Row.withComponent(Link);
 
@@ -137,13 +138,13 @@ const CoinRow = (props) => {
           {getFormattedPercentage(priceChangePercent24hInCurrency)}
         </HideableBelowSmall>
 
-        <HideableBelowMedium
+        <HideableBelowLarge
           css={css`
             color: ${getCoinColorStatus(priceChangePercent7dInCurrency)};
           `}
         >
           {getFormattedPercentage(priceChangePercent7dInCurrency)}
-        </HideableBelowMedium>
+        </HideableBelowLarge>
       </StyledLinkRow>
     </article>
   );
