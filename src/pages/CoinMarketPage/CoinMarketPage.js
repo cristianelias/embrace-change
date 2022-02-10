@@ -48,7 +48,7 @@ const CoinMarketPage = () => {
 
     const intervalId = setInterval(() => {
       console.log(`Interval excecuted ${updateInterval}`);
-      // fetchData();
+      fetchData();
     }, updateInterval);
 
     return () => clearInterval(intervalId);

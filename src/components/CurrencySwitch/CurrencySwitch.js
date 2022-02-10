@@ -8,7 +8,7 @@ import styled from "@emotion/styled";
 import { setCurrency } from "../../actionCreators/preferences";
 
 // Components
-import ControlContainer from "../Styled/ControlContainer";
+import FlexCenteredCol from "../Styled/FlexCenteredCol";
 
 const PillContainer = styled.div`
   display: flex;
@@ -53,12 +53,12 @@ const currenciesConfig = [
   },
 ];
 
-const CurrencyControls = () => {
+const CurrencySwitch = () => {
   const { currency } = useSelector((state) => state).preferences;
   const dispatch = useDispatch();
 
   return (
-    <ControlContainer>
+    <FlexCenteredCol>
       <Title>Your currency</Title>
       <PillContainer>
         {currenciesConfig.map(({ id, emoji }) => {
@@ -77,8 +77,8 @@ const CurrencyControls = () => {
           );
         })}
       </PillContainer>
-    </ControlContainer>
+    </FlexCenteredCol>
   );
 };
 
-export default CurrencyControls;
+export default CurrencySwitch;

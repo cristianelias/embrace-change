@@ -10,6 +10,7 @@ import CoinDetailsPage from "../../pages/CoinDetailsPage/CoinDetailsPage";
 // Store
 import store from "../../store";
 import ScrollToTop from "../ScrollToTop/ScrollToTop";
+import NotFound from "../../pages/NotFound/NotFound";
 
 const App = () => (
   <Provider store={store}>
@@ -17,6 +18,7 @@ const App = () => (
       <ScrollToTop />
       <Layout>
         <Routes>
+          <Route path="*" element={<NotFound />} />
           <Route path="/" element={<CoinMarketPage />} />
           <Route path="/:id/details" element={<CoinDetailsPage />} />
         </Routes>

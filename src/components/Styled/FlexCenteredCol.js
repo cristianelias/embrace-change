@@ -1,7 +1,7 @@
 // Dependencies
 import styled from "@emotion/styled";
 
-const ControlContainer = styled.div`
+const FlexCenteredCol = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,4 +9,4 @@ const ControlContainer = styled.div`
   gap: 15px;
 `;
 
-export default ControlContainer;
+export default FlexCenteredCol;
