@@ -1,6 +1,6 @@
 /** @jsx jsx */
 // Dependencies
-import { jsx } from "@emotion/react";
+import { jsx, useTheme } from "@emotion/react";
 import styled from "@emotion/styled";
 
 const ExchangeLink = styled.a`
@@ -10,18 +10,12 @@ const ExchangeLink = styled.a`
   align-items: center;
 `;
 
-const Image = styled.img`
-  width: 25px;
-  border-radius: 50%;
-  border: 2px solid #c5c1ff;
-  padding: 4px;
-`;
-
 const ExchangeName = styled.span`
   font-family: "Raleway";
   font-weight: 800;
   text-align: center;
   font-size: 16px;
+  color: #b3b3b3;
 `;
 
 const InfoRows = styled.div`
@@ -57,6 +51,15 @@ const TrustValue = styled.span`
 `;
 
 const ExchangeMediaObj = ({ name, image, url, sinceYear, trustScore }) => {
+  const theme = useTheme();
+
+  const Image = styled.img`
+    width: 25px;
+    border-radius: 50%;
+    border: 2px solid ${theme.footer.imagesBorder};
+    padding: 4px;
+  `;
+
   return (
     <ExchangeLink href={url} rel="noreferrer" target="_blank">
       <Identity>

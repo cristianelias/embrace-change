@@ -1,7 +1,7 @@
 /** @jsx jsx */
 // Dependencies
 import { useEffect, useState } from "react";
-import { jsx } from "@emotion/react";
+import { jsx, useTheme } from "@emotion/react";
 import styled from "@emotion/styled";
 
 // Clients
@@ -10,20 +10,6 @@ import { getFriendlyExchanges } from "../../clients/criptoGeckoClient";
 // Components
 import ExchangeMediaObj from "../ExchangeMediaObj/ExchangeMediaObj";
 import Logo from "../Logo/Logo";
-
-const StyledFooter = styled.footer`
-  color: white;
-  background-color: rgb(37 34 34);
-
-  padding: 35px 50px;
-  grid-row: 3/4;
-  grid-column: 1/4;
-  z-index: 3;
-
-  @media (max-width: 768px) {
-    padding: 0;
-  }
-`;
 
 const Title = styled.h3`
   font-size: 15px;
@@ -103,6 +89,22 @@ const IdentityContainer = styled.div`
 `;
 
 const Footer = () => {
+  const theme = useTheme();
+
+  const StyledFooter = styled.footer`
+    color: ${theme.footer.color};
+    background-color: ${theme.footer.background};
+
+    padding: 35px 50px;
+    grid-row: 3/4;
+    grid-column: 1/4;
+    z-index: 3;
+
+    @media (max-width: 768px) {
+      padding: 0;
+    }
+  `;
+
   /* 👋 hi! this api call wouldn't make much sense
    in a real world scenario. I added it for demonstration purposes.
    It will only be called one time per page load 

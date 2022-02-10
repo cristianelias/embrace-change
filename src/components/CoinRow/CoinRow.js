@@ -1,7 +1,7 @@
 /** @jsx jsx */
 // Dependencies
 import { Link } from "react-router-dom";
-import { jsx, css } from "@emotion/react";
+import { jsx, css, useTheme } from "@emotion/react";
 
 // Entities
 import Price from "../../entities/Price";
@@ -70,18 +70,20 @@ const CoinRow = (props) => {
     priceChangePercent7dInCurrency,
     currency,
   } = props;
+  const theme = useTheme();
 
   return (
     <article>
       <StyledLinkRow
         to={`/${id}/details`}
         css={css`
-          background-color: #ffff;
-          box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-          color: rgba(0, 20, 42, 0.6);
+          background-color: ${theme.ui.container.background};
+          box-shadow: ${theme.coinList.row.boxShadow};
+          color: ${theme.text.primary};
 
           &:hover {
-            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            box-shadow: ${theme.coinList.row.hoverBoxShadow};
+            background-color: ${theme.coinList.row.hoverBackground};
           }
         `}
       >

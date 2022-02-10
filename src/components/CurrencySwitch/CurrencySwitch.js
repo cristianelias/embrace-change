@@ -1,6 +1,6 @@
 /** @jsx jsx */
 // Dependencies
-import { jsx, css } from "@emotion/react";
+import { jsx, css, useTheme } from "@emotion/react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "@emotion/styled";
 
@@ -15,23 +15,6 @@ const PillContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-`;
-
-const Pill = styled.div`
-  padding: 0px 11px;
-  height: 34px;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  background-color: #fbf9f9;
-  border-radius: 4px;
-  font-size: 20px;
-  cursor: pointer;
-  box-shadow: rgb(0 0 0 / 10%) 0px 1px 3px 0px, rgb(0 0 0 / 6%) 0px 1px 2px 0px;
-
-  &:hover {
-    opacity: 0.8;
-  }
 `;
 
 const Title = styled.span`
@@ -54,8 +37,27 @@ const currenciesConfig = [
 ];
 
 const CurrencySwitch = () => {
+  const theme = useTheme();
   const { currency } = useSelector((state) => state).preferences;
   const dispatch = useDispatch();
+
+  const Pill = styled.div`
+    padding: 0px 11px;
+    height: 34px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    background: ${theme.ui.switches.background};
+    border-radius: 4px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: rgb(0 0 0 / 10%) 0px 1px 3px 0px,
+      rgb(0 0 0 / 6%) 0px 1px 2px 0px;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  `;
 
   return (
     <FlexCenteredCol>
@@ -63,7 +65,7 @@ const CurrencySwitch = () => {
       <PillContainer>
         {currenciesConfig.map(({ id, emoji }) => {
           const selectedStyles = css`
-            background-color: #e3e3e3;
+            background: ${theme.ui.switches.backgroundSelected};
           `;
 
           return (

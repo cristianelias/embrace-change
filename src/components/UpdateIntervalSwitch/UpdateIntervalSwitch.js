@@ -1,6 +1,6 @@
 /** @jsx jsx */
 // Dependencies
-import { jsx } from "@emotion/react";
+import { jsx, useTheme } from "@emotion/react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "@emotion/styled";
 
@@ -14,22 +14,23 @@ const Label = styled.label`
   font-size: 14px;
 `;
 
-const Select = styled.select`
-  height: 34px;
-  padding: 0 15px;
-  text-align: center;
-  border-radius: 4px;
-  align-self: flex-end;
-  border: none;
-  outline: none;
-  background-color: #fbf9f9;
-  color: #3e3e3e;
-`;
-
 const UpdateIntervalSwitch = () => {
+  const theme = useTheme();
   const dispatch = useDispatch(useDispatch);
   const getState = (state) => state;
   const { updateInterval } = useSelector(getState).ui;
+
+  const Select = styled.select`
+    height: 34px;
+    padding: 0 15px;
+    text-align: center;
+    border-radius: 4px;
+    align-self: flex-end;
+    border: none;
+    outline: none;
+    background: ${theme.ui.switches.background};
+    color: ${theme.text.primary};
+  `;
 
   return (
     <FlexCenteredCol>

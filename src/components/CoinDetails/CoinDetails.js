@@ -1,6 +1,6 @@
 /** @jsx jsx */
 // Dependencies
-import { jsx } from "@emotion/react";
+import { jsx, useTheme } from "@emotion/react";
 import styled from "@emotion/styled";
 import * as sanitizeHtml from "sanitize-html";
 import parse from "html-react-parser";
@@ -11,6 +11,7 @@ import CoinDetailsImage from "../Styled/CoinDetailsImage";
 import CoinSymbolContainer from "../Styled/CoinDetailsSymbolContainer";
 
 const CoinDetails = ({ symbol, name, description, image }) => {
+  const theme = useTheme();
   /* 👋 Hey there!
   Look, I know this is weird... For some reason CoinGecko is returning 
   HTML inside a description object. Yes, very dangerous.

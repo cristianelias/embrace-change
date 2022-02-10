@@ -13,6 +13,47 @@ import "@fontsource/raleway/500.css";
 import "@fontsource/raleway/800.css";
 import "@fontsource/source-sans-pro";
 
+const theme = {
+  header: {
+    background: `linear-gradient(
+      3deg
+      , rgb(0 25 47 / 25%) 0%, rgb(17 17 17) 55%, rgb(0 25 47 / 48%) 100%)`,
+  },
+  body: {
+    background: `linear-gradient(
+        3deg
+        , rgba(0,25,47,1) 0%, rgba(9,53,87,1) 60%, rgba(0,25,47,1) 100%);`,
+  },
+  ui: {
+    switches: {
+      background: `rgb(251 249 249 / 19%)`,
+      backgroundSelected: `rgb(223 226 231)`,
+    },
+    container: {
+      boxShadow: `rgb(0 0 0) 0px 3px 8px`,
+      background: `#062442`,
+    },
+  },
+  coinList: {
+    row: {
+      boxShadow: `rgb(0 0 0 / 52%) 0px 8px 24px;`,
+      hoverBoxShadow: `rgb(0 0 0) 0px 3px 8px`,
+      hoverBackground: `#00172d`,
+    },
+    listHeader: {
+      color: `#e8ebeec7`,
+    },
+  },
+  footer: {
+    background: `rgb(12 12 12)`,
+    imagesBorder: `rgb(0 38 68)`,
+    fontColor: `rgb(234, 236, 239)`,
+  },
+  text: {
+    primary: `rgb(234, 236, 239)`,
+  },
+};
+
 const globalCSSRules = css`
   ${emotionReset},
 
@@ -27,17 +68,11 @@ const globalCSSRules = css`
   }
 
   body {
-    color: #3e3e3e;
+    color: ${theme.text.primary};
     margin: 0;
     padding: 0;
-    background-color: #f8fafd;
+    background: ${theme.body.background};
     font-family: "Source Sans Pro";
-    background-image: linear-gradient(
-      -225deg,
-      #a4c2f9 0%,
-      #c5c1ff 20%,
-      #ffbac3 100%
-    );
   }
 
   a {
@@ -45,18 +80,6 @@ const globalCSSRules = css`
     color: inherit;
   }
 `;
-
-const theme = {
-  colors: {
-    primary: "#B5EAEA",
-    secondary: "#F38BA0",
-    pInactive: "#EDF6E5",
-    sInactive: "#FFBCBC",
-    background: "FFFFFF",
-    fontRegular: "#707A8A",
-    fontStrong: "#1E2329",
-  },
-};
 
 const Container = styled.section`
   display: grid;

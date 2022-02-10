@@ -1,6 +1,6 @@
 /** @jsx jsx */
 // Dependencies
-import { jsx, css } from "@emotion/react";
+import { jsx, css, useTheme } from "@emotion/react";
 import { useSelector } from "react-redux";
 import styled from "@emotion/styled";
 
@@ -17,6 +17,7 @@ const Cell = styled.div`
 const GridHeader = Row.withComponent("header");
 
 const CoinList = () => {
+  const theme = useTheme();
   const getState = (state) => state;
   const { coins } = useSelector(getState).coinMarket;
   const { currency } = useSelector(getState).preferences;
@@ -25,7 +26,7 @@ const CoinList = () => {
     <article>
       <GridHeader
         css={css`
-          color: white;
+          color: ${theme.coinList.listHeader.color};
           font-weight: 800;
           font-family: "Raleway";
           font-size: 20px;

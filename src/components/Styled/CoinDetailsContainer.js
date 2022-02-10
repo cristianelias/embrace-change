@@ -3,11 +3,10 @@
 import styled from "@emotion/styled";
 
 const CoinDetailsContainer = styled.article`
-  background-color: white;
+  background-color: ${(props) => props.theme.ui.container.background};
   font-family: "Raleway";
   border-radius: 4px;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
-    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  box-shadow: ${(props) => props.theme.ui.container.boxShadow};
   display: flex;
   flex-direction: column;
   padding: 60px 80px;
