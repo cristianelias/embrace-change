@@ -19,6 +19,7 @@ const Row = styled.div`
 
   @media (max-width: 440px) {
     grid-template-columns: 6% 38% 25% 25%;
+    padding: 0 5px;
   }
 `;
 

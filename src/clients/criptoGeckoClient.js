@@ -1,6 +1,9 @@
 // Dependencies
 import axios from "axios";
 
+// Conf
+import blacklistedExchanges from "./blacklist";
+
 const baseURL = "https://api.coingecko.com/api/v3/";
 
 const assembleURL = (endpoint) => `${baseURL}${endpoint}`;
@@ -74,15 +77,22 @@ const mapExchangesResponse = (foreignEntity) => ({
   trustScore: foreignEntity.trust_score_rank,
 });
 
+const filterBannedExchanges = ({ id }) => {
+  return !blacklistedExchanges.includes(id);
+};
+
 const getFriendlyExchanges = async ({ onError, onSuccess }) => {
-  const endpoint = `exchanges?per_page=20&page=1`;
+  const endpoint = `exchanges?per_page=21&page=1`;
 
   try {
     const response = await axios.get(assembleURL(endpoint), {
       crossDomain: true,
     });
-    const exchanges = response.data.map(mapExchangesResponse);
-    onSuccess(exchanges);
+
+    const filteredResponse = response.data.filter(filterBannedExchanges);
+
+    const result = filteredResponse.map(mapExchangesResponse);
+    onSuccess(result);
   } catch (error) {
     onError(error);
   }

@@ -18,21 +18,15 @@ const StyledFooter = styled.footer`
   padding: 35px 50px;
   grid-row: 3/4;
   grid-column: 1/4;
-
-  display: grid;
-  grid-template-columns: 60% 40%;
-  grid-template-rows: auto auto;
 `;
 
 const Title = styled.h3`
-  font-size: 18px;
+  font-size: 15px;
+  width: 40%;
+  text-align: right;
 `;
 
-const LogoContainer = styled.div`
-  display: flex;
-  align-content: space-between;
-  justify-content: flex-start;
-
+const LogoWrapper = styled.div`
   img {
     height: 60px;
     width: 60px;
@@ -43,36 +37,12 @@ const LogoContainer = styled.div`
   }
 `;
 
-const childrenCommonStyles = css`
+const MainRow = styled.div`
   padding: 10px 15px;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-around;
   align-items: center;
-`;
-
-const InfoColumn = styled.div`
-  ${childrenCommonStyles};
-
-  grid-column: 1/2;
-  grid-row: 1/2;
-  gap: 10px;
-`;
-
-const CreditsColumn = styled.div`
-  ${childrenCommonStyles};
-
-  grid-column: 2/3;
-  grid-row: 1/2;
-  justify-content: center;
-`;
-
-const LinksColumn = styled.div`
-  ${childrenCommonStyles};
-
-  grid-column: 1/3;
-  grid-row: 2/3;
-  margin-top: 30px;
+  gap: 35px;
 `;
 
 const SiteDescription = styled.p`
@@ -85,11 +55,18 @@ const StrongText = styled.strong`
 `;
 
 const ListOfLinks = styled.ol`
+  gap: 50px;
+  margin-top: 50px;
   display: flex;
   flex-flow: row wrap;
-  gap: 50px;
+  justify-content: space-evenly;
   align-items: center;
-  justify-content: center;
+`;
+
+const IdentityContainer = styled.div`
+  width: 60%;
+  display: flex;
+  gap: 10px;
 `;
 
 const Footer = () => {
@@ -111,18 +88,18 @@ const Footer = () => {
 
   return (
     <StyledFooter>
-      <InfoColumn>
-        <LogoContainer>
-          <Logo />
-        </LogoContainer>
-        <SiteDescription>
-          Complete <StrongText>cryptocurrency market</StrongText> coverage with{" "}
-          <StrongText>live coin prices</StrongText> and crypto market cap
-          featuring 14328 coins on 387 exchanges.
-        </SiteDescription>
-      </InfoColumn>
-
-      <CreditsColumn>
+      <MainRow>
+        <IdentityContainer>
+          <LogoWrapper>
+            <Logo />
+          </LogoWrapper>
+          <SiteDescription>
+            Complete <StrongText>cryptocurrency market</StrongText> coverage
+            with
+            <StrongText>live coin prices</StrongText> and crypto market cap
+            featuring 14328 coins on 387 exchanges.
+          </SiteDescription>
+        </IdentityContainer>
         <Title>
           <a
             href="https://github.com/cristianelias"
@@ -132,16 +109,15 @@ const Footer = () => {
             Made with 🤍 by Cris
           </a>
         </Title>
-      </CreditsColumn>
-      <LinksColumn>
-        <ListOfLinks>
-          {exchanges.map((exchangeMeta, index) => (
-            <li key={index}>
-              <ExchangeMediaObj {...exchangeMeta} />
-            </li>
-          ))}
-        </ListOfLinks>
-      </LinksColumn>
+      </MainRow>
+
+      <ListOfLinks>
+        {exchanges.map((exchangeMeta, index) => (
+          <li key={index}>
+            <ExchangeMediaObj {...exchangeMeta} />
+          </li>
+        ))}
+      </ListOfLinks>
     </StyledFooter>
   );
 };

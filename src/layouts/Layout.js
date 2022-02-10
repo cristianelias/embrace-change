@@ -63,10 +63,6 @@ const Container = styled.section`
   @media (max-width: 992px) {
     grid-template-columns: 6% auto 6%;
   }
-
-  @media (max-width: 768px) {
-    grid-template-columns: 4% auto 4%;
-  }
 `;
 
 const MainContent = styled.section`

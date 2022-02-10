@@ -7,14 +7,13 @@ const ExchangeLink = styled.a`
   color: rgb(145, 145, 145);
   font-size: 16px;
   display: flex;
-  flex-direction: row;
   align-items: center;
 `;
 
 const Image = styled.img`
-  width: 45px;
+  width: 25px;
   border-radius: 50%;
-  border: 3px solid #c5c1ff;
+  border: 2px solid #c5c1ff;
   padding: 4px;
 `;
 
@@ -28,6 +27,7 @@ const ExchangeName = styled.span`
 const InfoRows = styled.div`
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   gap: 5px;
 `;
 
@@ -37,9 +37,23 @@ const Identity = styled.div`
   justify-content: center;
   align-items: center;
   gap: 10px;
-  overflow: hidden;
-  text-overflow: ellipsis;
   width: 100px;
+`;
+
+const Since = styled.span`
+  font-size: 13px;
+`;
+
+const TrustLabel = styled.span`
+  font-size: 14px;
+`;
+
+const Hashtag = styled.span`
+  margin-left: 4px;
+`;
+
+const TrustValue = styled.span`
+  font-size: 15px;
 `;
 
 const ExchangeMediaObj = ({ name, image, url, sinceYear, trustScore }) => {
@@ -50,15 +64,16 @@ const ExchangeMediaObj = ({ name, image, url, sinceYear, trustScore }) => {
         <ExchangeName>{name}</ExchangeName>
       </Identity>
       <InfoRows>
+        {sinceYear && (
+          <Since>
+            Since <span>{sinceYear}</span>
+          </Since>
+        )}
+
         <span>
-          Since <span>{sinceYear}</span>
-        </span>
-        <span>
-          Trust score
-          <span>
-            <span>#</span>
-            {trustScore}
-          </span>
+          <TrustLabel>Trust score</TrustLabel>
+          <Hashtag>#</Hashtag>
+          <TrustValue>{trustScore}</TrustValue>
         </span>
       </InfoRows>
     </ExchangeLink>
