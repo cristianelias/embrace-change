@@ -37,9 +37,6 @@ const CoinDetailsPage = () => {
         console.log(
           `Something went really wrong, take a look. Error: ${error}`
         );
-        alert(
-          "Something went wrong while trying to fetch market data. We'll take you home now."
-        );
         navigate({ path: "/" });
       },
     });
