@@ -1,5 +1,6 @@
 /** @jsx jsx */
 // Dependencies
+import { useMemo } from "react";
 import { jsx, css, useTheme } from "@emotion/react";
 import { useSelector } from "react-redux";
 import styled from "@emotion/styled";
@@ -22,6 +23,14 @@ const CoinList = () => {
   const getState = (state) => state;
   const { coins } = useSelector(getState).coinMarket;
   const { currency } = useSelector(getState).preferences;
+
+  const coinRows = useMemo(() => {
+    return coins.map((coinMeta, index) => (
+      <li key={index}>
+        <CoinRow {...coinMeta} currency={currency} />
+      </li>
+    ));
+  }, [coins]); // This is kind of controversial, I'd love to discuss it and get a second opinion about it
 
   return (
     <article>
@@ -58,13 +67,7 @@ const CoinList = () => {
 
         <HideableBelowLarge>1 week</HideableBelowLarge>
       </GridHeader>
-      <ol>
-        {coins.map((coinMeta, index) => (
-          <li key={index}>
-            <CoinRow {...coinMeta} currency={currency} />
-          </li>
-        ))}
-      </ol>
+      <ol>{coinRows}</ol>
     </article>
   );
 };
