@@ -21,13 +21,16 @@ module.exports = (env, { mode }) => {
       new webpack.DefinePlugin({
         BACKEND_URL: JSON.stringify(backendUrl),
       }),
-      new HtmlWebpackPlugin({ template: "src/index.html" }),
+      new HtmlWebpackPlugin({
+        template: "src/index.html",
+        favicon: "src/assets/images/cheems-logo.png",
+      }),
       new webpack.ProvidePlugin({
         React: "react",
       }),
     ],
     devServer: {
-      // open: true,
+      open: true,
       client: {
         overlay: true,
         progress: true,
